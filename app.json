@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "sdkVersion": "32.0.0",
+    "packagerOpts": {
+      "config": "metro.config.js"
+    }
+  }
+}
