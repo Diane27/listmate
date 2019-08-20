@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { Text, Button, Image } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import theme from '../styles';
+
+import Iconsvg from '../components/Iconsvg';
 
 import * as firebase from 'firebase'
 import firebaseService from '../service-firebase'
 import '@firebase/firestore';
+import { Google } from 'expo';
 import { config } from '../config'
 
 const db = firebaseService.firestore();
@@ -24,6 +28,7 @@ export default class LoginScreen extends React.Component {
     }
     return false;
   };
+
   onSignIn = googleUser => {
     // console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
@@ -80,14 +85,16 @@ export default class LoginScreen extends React.Component {
       }.bind(this)
     );
   };
+
   signInWithGoogleAsync = async () => {
     try {
-      const result = await Expo.Google.logInAsync({
+      const result = await Google.logInAsync({
         // androidClientId: YOUR_CLIENT_ID_HERE,
         iosClientId: config.IOS_CLIENT_ID,
         scopes: ['profile', 'email']
       });
-
+      
+      console.log('ok?')
       if (result.type === 'success') {
         this.onSignIn(result);
         return result.accessToken;
@@ -98,15 +105,34 @@ export default class LoginScreen extends React.Component {
       return { error: true };
     }
   };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Icon.Button
-          name="google"
-          // type="outline"
-          onPress={() => this.signInWithGoogleAsync()}
-        >Login with Google </Icon.Button>
-      </View>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Text h3 style={styles.headerText}>Welcome to</Text>
+          <Text h3 style={[styles.headerText, styles.headerListmate]}>Listmate</Text>
+        </View>
+        <View style={styles.footerButtons}>
+          <Button raised
+            title="Sign up with Google"
+            type="outline"
+            titleStyle={{color: "#342E37", marginLeft:8}}
+            buttonStyle={styles.signUpButton}
+            onPress={() => this.signInWithGoogleAsync()}
+            icon={
+              <Iconsvg
+                name="Google"
+                width="25px" height="25px" viewBox="0 0 400 400"
+              />
+            } 
+          />
+          <View style={styles.footerSignIn}>
+            <Text style={{textAlign:'center'}}>Already have an account? </Text> 
+            <Text style={{color:theme.colors.secondary}}>Sign In </Text> 
+          </View>
+        </View>
+      </SafeAreaView>
     );
   }
 
@@ -116,8 +142,28 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      marginHorizontal: 20,
+      marginVertical: 70,
     },
+    headerText: {
+      textAlign: 'left',
+      fontWeight: '500'
+    },
+    headerListmate: {
+      color: theme.colors.primary
+    },
+    footerButtons: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      alignItems: 'center'
+    },
+    signUpButton: {
+      borderRadius: 10,
+      paddingHorizontal: 30
+    },
+    footerSignIn: {
+      flexDirection: 'row',
+      marginTop: 20,
+    }
 });
   

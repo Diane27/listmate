@@ -11,7 +11,8 @@ const theme = {
         backgroundColor: '#6234D9',
     },
     Icon: {
-        color: '#FAFFFD'
+        color: '#FAFFFD',
+        type: 'ionicon',
     },
     Input: {
         inputStyle: {

@@ -62,7 +62,7 @@ const DrawerNavigator = createDrawerNavigator(
     Home: {
       navigationOptions: {
         drawerIcon: () => (
-          <Icon name="home" type="font-awesome" color="#342E37" />
+          <Icon name="md-home" color="#342E37" />
         )
       },
       screen: StackNavigator
