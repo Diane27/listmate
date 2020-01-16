@@ -1,8 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "33.0.0",
+    "sdkVersion": "34.0.0",
     "packagerOpts": {
       "config": "metro.config.js"
-    }
+    },
+    "name": "listmate",
+    "slug": "listmate",
+    "version": "0.1.0",
+    "platforms": [
+      "android",
+      "ios"
+    ]
   }
 }

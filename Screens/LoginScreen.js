@@ -9,8 +9,8 @@ import Iconsvg from '../components/Iconsvg';
 import * as firebase from 'firebase'
 import firebaseService from '../service-firebase'
 import '@firebase/firestore';
-import { Google } from 'expo';
-import { config } from '../config'
+import * as Google from 'expo-google-app-auth';
+import config from '../config'
 
 const db = firebaseService.firestore();
 
@@ -88,6 +88,7 @@ export default class LoginScreen extends React.Component {
 
   signInWithGoogleAsync = async () => {
     try {
+      console.log("gets here")
       const result = await Google.logInAsync({
         // androidClientId: YOUR_CLIENT_ID_HERE,
         iosClientId: config.IOS_CLIENT_ID,
