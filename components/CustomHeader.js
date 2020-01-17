@@ -20,7 +20,7 @@ class CustomHeader extends React.Component{
                 rightComponent={
                     <TouchableHighlight
                         underlayColor='transparent'
-                        onPress={() => this.props.navigation.navigate()}>
+                        onPress={() => this.props.navigation.openDrawer()}>
                         <Icon name='bell' type='font-awesome' size={22} color={'#FAFFFD'} />
                     </TouchableHighlight>
                 }

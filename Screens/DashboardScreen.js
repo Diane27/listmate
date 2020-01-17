@@ -27,7 +27,7 @@ export default class DashboardScreen extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const user = firebaseService.auth().currentUser;
         this.setState({user});
         dataService.find('listToUsers', { param: 'user', value: user.uid })

@@ -34,12 +34,7 @@ export default class ItemsFormScreen extends React.Component {
             )
         }
     }
-    componentWillMount(){
-        let newItem = {
-            name: '',
-            tags: [],
-
-        };
+    UNSAFE_componentWillMount(){
         if(this.props.navigation.state.params){
             const activeItem = this.props.navigation.getParam('activeItem', null)
             this.setState({list: this.props.navigation.getParam('list', null)});
