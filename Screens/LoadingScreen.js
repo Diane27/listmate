@@ -10,7 +10,7 @@ class LoadingScreen extends Component {
   checkIfLoggedIn = () => {
     firebaseService.auth().onAuthStateChanged(
       function(user) {
-        console.log('AUTH STATE CHANGED CALLED ')
+        // console.log('AUTH STATE CHANGED CALLED ')
         // this.props.navigation.navigate('Dashboard');
         if (user) {
           this.props.navigation.navigate('Dashboard');
